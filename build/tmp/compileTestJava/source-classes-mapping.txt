@@ -1,2 +1,4 @@
 models/NewsArticlesTest.java
  models.NewsArticlesTest
+models/UsersTest.java
+ models.UsersTest
