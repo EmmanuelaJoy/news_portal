@@ -49,4 +49,10 @@ public class Sql2oUsersDao implements UsersDao{
             System.out.println(ex);
         }
     }
+
+    @Override
+    public void clearAllUsers() {
+
+
+    }
 }
