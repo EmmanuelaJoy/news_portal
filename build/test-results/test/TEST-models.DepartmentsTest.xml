@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="models.DepartmentsTest" tests="7" skipped="0" failures="0" errors="0" timestamp="2021-05-12T08:58:01" hostname="emmanuela-HP-ENVY-x360-Convertible" time="0.004">
+  <properties/>
+  <testcase name="setDepartmentDescriptionSetsCorrectly_String" classname="models.DepartmentsTest" time="0.001"/>
+  <testcase name="departmentEmployeesReturnsCorrectly_String" classname="models.DepartmentsTest" time="0.0"/>
+  <testcase name="departmentNameReturnsCorrectly_String" classname="models.DepartmentsTest" time="0.0"/>
+  <testcase name="setDepartmentNameSetsCorrectly_String" classname="models.DepartmentsTest" time="0.001"/>
+  <testcase name="instantiatesDepartmentObjectsCorrectly_true" classname="models.DepartmentsTest" time="0.0"/>
+  <testcase name="setEmployeesSetsCorrectly_String" classname="models.DepartmentsTest" time="0.0"/>
+  <testcase name="departmentDescriptionReturnsCorrectly_String" classname="models.DepartmentsTest" time="0.0"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

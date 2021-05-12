@@ -8,8 +8,7 @@ public class Users {
     private String department;
     private String role;
 
-    public Users(int id, String name, String department, String role){
-        this.id = id;
+    public Users(String name, String department, String role){
         this.name = name;
         this.department = department;
         this.role = role;

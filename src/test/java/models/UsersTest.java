@@ -23,12 +23,6 @@ public class UsersTest {
     }
 
     @Test
-    public void userIdReturnsCorrectly_int() throws Exception {
-        Users users = newUser();
-        assertEquals(1, users.getId());
-    }
-
-    @Test
     public void userNameReturnsCorrectly_String() throws Exception {
         Users users = newUser();
         assertEquals("Joy", users.getName());
@@ -75,6 +69,6 @@ public class UsersTest {
     }
 
     private Users newUser() {
-        return new Users(1,"Joy", "IT", "Support");
+        return new Users("Joy", "IT", "Support");
     }
 }
