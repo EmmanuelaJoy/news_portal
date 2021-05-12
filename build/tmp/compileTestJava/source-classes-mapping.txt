@@ -1,6 +1,0 @@
-models/NewsArticlesTest.java
- models.NewsArticlesTest
-models/UsersTest.java
- models.UsersTest
-models/DepartmentsTest.java
- models.DepartmentsTest
