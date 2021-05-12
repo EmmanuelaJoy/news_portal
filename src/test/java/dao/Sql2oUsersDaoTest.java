@@ -63,6 +63,17 @@ public class Sql2oUsersDaoTest {
         assertEquals(0, userDao.getAll().size());
     }
 
+    @Test
+    public void clearAllClearsAll() throws Exception {
+        Users user = newUser();
+        Users user1 = newUser();
+        userDao.add(user);
+        userDao.add(user1);
+        int daoSize = userDao.getAll().size();
+        userDao.clearAllUsers();
+        assertTrue(daoSize > 0 && daoSize > userDao.getAll().size());
+    }
+
     private Users newUser(){
         return new Users("Emma", "IT", "Technician");
     }

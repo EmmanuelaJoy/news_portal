@@ -52,7 +52,11 @@ public class Sql2oUsersDao implements UsersDao{
 
     @Override
     public void clearAllUsers() {
-
-
+        String sql = "DELETE from users";
+        try(Connection connection = sql2o.open()){
+            connection.createQuery(sql).executeUpdate();
+        } catch (Sql2oException ex){
+            System.out.println(ex);
+        }
     }
 }
