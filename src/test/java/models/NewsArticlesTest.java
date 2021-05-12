@@ -23,12 +23,6 @@ public class NewsArticlesTest {
     }
 
     @Test
-    public void newsArticlesIdReturnsCorrectly_int() throws Exception {
-        NewsArticles newsArticles = newNewsArticle();
-        assertEquals(1, newsArticles.getArticleId());
-    }
-
-    @Test
     public void newsArticlesNameReturnsCorrectly_String() throws Exception {
         NewsArticles newsArticles = newNewsArticle();
         assertEquals("Time Management", newsArticles.getName());
@@ -75,6 +69,6 @@ public class NewsArticlesTest {
     }
 
     private NewsArticles newNewsArticle() {
-        return new NewsArticles(1, "Time Management", "Emmanuela Joy", "Stop procrastinating");
+        return new NewsArticles("Time Management", "Emmanuela Joy", "Stop procrastinating");
     }
 }

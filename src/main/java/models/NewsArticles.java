@@ -11,8 +11,7 @@ public class NewsArticles {
     private  String description;
     private Date published;
 
-    public NewsArticles(int articleId, String name, String author, String description){
-        this.articleId = articleId;
+    public NewsArticles(String name, String author, String description){
         this.name = name;
         this.author = author;
         this.description = description;
