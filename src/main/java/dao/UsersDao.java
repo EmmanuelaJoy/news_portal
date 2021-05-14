@@ -1,5 +1,6 @@
 package dao;
 
+import models.Departments;
 import models.Users;
 
 import java.util.List;
@@ -10,6 +11,7 @@ public interface UsersDao {
 
     //Create
     void add(Users user);
+    void addUserToDepartment(Users user, Departments department);
 
     //Read
     Users findById(int id);

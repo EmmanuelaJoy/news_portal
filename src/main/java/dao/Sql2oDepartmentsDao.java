@@ -1,10 +1,12 @@
 package dao;
 
 import models.Departments;
+import models.Users;
 import org.sql2o.Connection;
 import org.sql2o.Sql2o;
 import org.sql2o.Sql2oException;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class Sql2oDepartmentsDao implements DepartmentsDao{
@@ -20,6 +22,29 @@ public class Sql2oDepartmentsDao implements DepartmentsDao{
         try(Connection connection = sql2o.open()) {
             return connection.createQuery("SELECT * FROM departments").executeAndFetch(Departments.class);
         }
+    }
+
+    @Override
+    public List<Users> getAllDepartmentUsers(int departmentId) {
+        ArrayList<Users> users = new ArrayList<>();
+
+        String joinQuery = "SELECT userId FROM departments_users WHERE departmentId = :departmentId";
+
+        try (Connection con = sql2o.open()) {
+            List<Integer> allUsersIds = con.createQuery(joinQuery)
+                    .addParameter("departmentId", departmentId)
+                    .executeAndFetch(Integer.class);
+            for (Integer userId : allUsersIds){
+                String userQuery = "SELECT * FROM users WHERE id = :userId";
+                users.add(
+                        con.createQuery(userQuery)
+                                .addParameter("userId", userId)
+                                .executeAndFetchFirst(Users.class));
+            }
+        } catch (Sql2oException ex){
+            System.out.println(ex);
+        }
+        return users;
     }
 
     @Override

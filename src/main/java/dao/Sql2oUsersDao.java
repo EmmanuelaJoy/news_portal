@@ -1,5 +1,6 @@
 package dao;
 
+import models.Departments;
 import models.Users;
 import org.sql2o.Connection;
 import org.sql2o.Sql2o;
@@ -29,6 +30,19 @@ public class Sql2oUsersDao implements UsersDao{
             int id = (int) connection.createQuery(sql,true).bind(user).executeUpdate().getKey();
             user.setId(id);
         } catch (Sql2oException ex) {
+            System.out.println(ex);
+        }
+    }
+
+    @Override
+    public void addUserToDepartment(Users user, Departments department) {
+        String sql = "INSERT INTO departments_users (userId, departmentId) VALUES (:userId, :departmentId)";
+        try (Connection con = sql2o.open()) {
+            con.createQuery(sql)
+                    .addParameter("userId", user.getId())
+                    .addParameter("departmentId", department.getId())
+                    .executeUpdate();
+        } catch (Sql2oException ex){
             System.out.println(ex);
         }
     }

@@ -10,6 +10,7 @@ import static org.junit.Assert.*;
 
 public class Sql2oDepartmentsDaoTest {
     private static Sql2oDepartmentsDao departmentsDao;
+    private static Sql2oUsersDao usersDao;
     private static Connection connection;
 
     @BeforeClass
@@ -50,6 +51,17 @@ public class Sql2oDepartmentsDaoTest {
     }
 
     @Test
+    public void  departmentReturnsUsersCorrectly() throws Exception{
+        Users user = newUser();
+        usersDao.add(user);
+        Users user2 = newUser();
+        usersDao.add(user2);
+        Departments department = newDepartment();
+        departmentsDao.add(department);
+
+    }
+
+    @Test
     public void noDepartmentsReturnsEmptyList() throws Exception {
         assertEquals(0, departmentsDao.getAll().size());
     }
@@ -75,5 +87,8 @@ public class Sql2oDepartmentsDaoTest {
 
     private Departments newDepartment(){
         return new Departments("Finance", "Handles company finances", "Emma, Joy");
+    }
+    private Users newUser(){
+        return new Users("Emma", "IT", "Technician");
     }
 }

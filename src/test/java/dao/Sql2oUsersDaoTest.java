@@ -1,5 +1,6 @@
 package dao;
 
+import models.Departments;
 import models.Users;
 import org.junit.*;
 import org.sql2o.Connection;
@@ -9,6 +10,7 @@ import static org.junit.Assert.*;
 
 public class Sql2oUsersDaoTest {
     private static Sql2oUsersDao userDao;
+    private static Sql2oDepartmentsDao departmentsDao;
     private static Connection connection;
 
     @BeforeClass
@@ -51,6 +53,16 @@ public class Sql2oUsersDaoTest {
     }
 
     @Test
+    public void addUserToDepartmentAddsCorrectly() throws Exception{
+        Departments department = newDepartment();
+        departmentsDao.add(department);
+        Users testUser = newUser();
+        userDao.add(testUser);
+        userDao.addUserToDepartment(testUser, department);
+        assertEquals(2, departmentsDao.getAllDepartmentUsers(department.getId()));
+    }
+
+    @Test
     public void noUsersReturnsEmptyList() throws Exception {
         assertEquals(0, userDao.getAll().size());
     }
@@ -76,5 +88,8 @@ public class Sql2oUsersDaoTest {
 
     private Users newUser(){
         return new Users("Emma", "IT", "Technician");
+    }
+    private Departments newDepartment(){
+        return new Departments("Finance", "Handles company finances", "Emma, Joy");
     }
 }
