@@ -3,6 +3,8 @@ import dao.Sql2oDepartmentsDao;
 import dao.Sql2oNewsArticlesDao;
 import dao.Sql2oUsersDao;
 import models.Departments;
+import models.NewsArticles;
+import models.Users;
 import org.sql2o.Connection;
 import org.sql2o.Sql2o;
 
@@ -31,24 +33,59 @@ public class App {
         usersDao = new Sql2oUsersDao(sql2o);
         newsArticlesDao = new Sql2oNewsArticlesDao(sql2o);
 
+        post("/users/new", "application/json", (req,res) -> {
+            Users user = gson.fromJson(req.body(), Users.class);
+            usersDao.add(user);
+            res.status(201);
+            return gson.toJson(user);
+        });
+
+        get("/users", "application/json", (req, res) -> { //accept a request in format JSON from an app
+            return gson.toJson(usersDao.getAll());//send it back to be displayed
+        });
+
+        get("/users/:id", "application/json", (req, res) -> { //accept a request in format JSON from an app
+            res.type("application/json");
+            int userId = Integer.parseInt(req.params("id"));
+            return gson.toJson(usersDao.findById(userId));
+        });
+
         post("/departments/new", "application/json", (req,res) -> {
             Departments department = gson.fromJson(req.body(), Departments.class);
             departmentsDao.add(department);
             res.status(201);
-            res.type("application/json");
             return gson.toJson(department);
         });
 
         get("/departments", "application/json", (req, res) -> { //accept a request in format JSON from an app
-            res.type("application/json");
             return gson.toJson(departmentsDao.getAll());//send it back to be displayed
         });
 
         get("/departments/:id", "application/json", (req, res) -> { //accept a request in format JSON from an app
             res.type("application/json");
             int departmentId = Integer.parseInt(req.params("id"));
-            res.type("application/json");
             return gson.toJson(departmentsDao.findById(departmentId));
+        });
+
+        post("/news/new", "application/json", (req,res) -> {
+            NewsArticles newsArticle = gson.fromJson(req.body(), NewsArticles.class);
+            newsArticlesDao.add(newsArticle);
+            res.status(201);
+            return gson.toJson(newsArticle);
+        });
+
+        get("/news", "application/json", (req, res) -> { //accept a request in format JSON from an app
+            return gson.toJson(newsArticlesDao.getAll());//send it back to be displayed
+        });
+
+        get("/news/:id", "application/json", (req, res) -> { //accept a request in format JSON from an app
+            res.type("application/json");
+            int departmentId = Integer.parseInt(req.params("id"));
+            return gson.toJson(newsArticlesDao.findById(departmentId));
+        });
+
+        after((req, res) ->{
+            res.type("application/json");
         });
     }
 }
