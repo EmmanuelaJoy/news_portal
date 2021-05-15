@@ -1,3 +1,5 @@
+SET MODE PostgreSQL;
+
 CREATE DATABASE news_portal;
 \c news_portal
 CREATE TABLE IF NOT EXISTS users(id serial PRIMARY KEY, name VARCHAR, department VARCHAR, role VARCHAR);

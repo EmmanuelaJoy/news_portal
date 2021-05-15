@@ -54,7 +54,7 @@ public class Sql2oDepartmentsDaoTest {
     public void  departmentReturnsUsersCorrectly() throws Exception{
         Users user = newUser();
         usersDao.add(user);
-        Users user2 = newUser();
+        Users user2 = new Users("Alice", "Finance", "Manager");
         usersDao.add(user2);
         Departments department = newDepartment();
         departmentsDao.add(department);
