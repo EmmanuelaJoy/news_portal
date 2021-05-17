@@ -84,6 +84,16 @@ public class App {
             return gson.toJson(newsArticlesDao.findById(departmentId));
         });
 
+        post("/departments/:departmentId/users/new", "application/json", (req, res) -> {
+            int departmentId = Integer.parseInt(req.params("departmentId"));
+            Users user = gson.fromJson(req.body(), Users.class);
+
+            user.setId(departmentId); //we need to set this separately because it comes from our route, not our JSON input.
+            usersDao.add(user);
+            res.status(201);
+            return gson.toJson(user);
+        });
+
         after((req, res) ->{
             res.type("application/json");
         });

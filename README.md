@@ -1,4 +1,4 @@
-# FARAJA COMPANY NEWS PORTAL APP
+# NEWS PORTAL APP
 
 ## Author's Information
 
